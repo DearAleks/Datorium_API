@@ -3,9 +3,14 @@
 package com.datorium.Datorium.API.Services;
 
 import com.datorium.Datorium.API.DTOs.User;
+import com.datorium.Datorium.API.Repositories.UserRepo;
 
 public class UserService {
+    private UserRepo userRepo; // UserService, called by UserController is creating a new repository
+    public UserService() {
+        userRepo = new UserRepo(); // connecting UserService and UserRepo, because we want to be able to connect to the database. Every other Service is going to have it's own repo with it's own connection to a DB (encapsulation)
+    }
     public int add(User user) {
-        return 0;
+        return userRepo.add(user);
     }
 }

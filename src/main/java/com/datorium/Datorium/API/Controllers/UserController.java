@@ -12,6 +12,7 @@ public class UserController { //This line defines the UserController class, whic
     private UserService userService; //a private field userService of type UserService is declared. This field will be used to interact with the user service layer, which handles the business logic.
 
     public UserController() { // a constructor, this runs first when creating UserController object
+        // every UserController has it's own UserService, which has it's own UserRepo.
         userService = new UserService(); // Inside the constructor, a new instance of UserService is created and assigned to the userService field.
         // This means whenever a UserController object is created, it will automatically have a UserService instance to use.
     }
