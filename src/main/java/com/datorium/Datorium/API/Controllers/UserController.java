@@ -4,6 +4,8 @@ import com.datorium.Datorium.API.DTOs.User;
 import com.datorium.Datorium.API.Services.UserService;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+
 @RestController // tells Spring that this class will handle HTTP requests and send responses back, usually in JSON format.
 @RequestMapping("/user") // every endpoint inside this controller will have user prefix
 
@@ -21,4 +23,10 @@ public class UserController { //This line defines the UserController class, whic
     public int add(@RequestBody User user) { //@RequestBody tells Spring to take the JSON body of the incoming request and convert it into a User object.
         return userService.add(user); //userController is requesting data from userService
     }
+    @GetMapping("/users")
+    public ArrayList<User> users() {
+        return userService.getUsers();
+
+    }
+
 }

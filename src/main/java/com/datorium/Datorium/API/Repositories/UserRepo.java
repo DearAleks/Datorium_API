@@ -12,4 +12,8 @@ public class UserRepo {
         users.add(user);
         return users.size();
     }
+    public ArrayList<User> getUsers() {
+        return users;
+    }
+
 }

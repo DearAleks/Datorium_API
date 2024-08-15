@@ -5,6 +5,8 @@ package com.datorium.Datorium.API.Services;
 import com.datorium.Datorium.API.DTOs.User;
 import com.datorium.Datorium.API.Repositories.UserRepo;
 
+import java.util.ArrayList;
+
 public class UserService {
     private UserRepo userRepo; // UserService, called by UserController is creating a new repository
     public UserService() {
@@ -13,4 +15,8 @@ public class UserService {
     public int add(User user) {
         return userRepo.add(user);
     }
+    public ArrayList<User> getUsers() {
+        return userRepo.getUsers();
+    }
+
 }
