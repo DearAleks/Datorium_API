@@ -1,5 +1,6 @@
 package com.datorium.Datorium.API.Controllers;
 
+import com.datorium.Datorium.API.DTOs.UpdateUserDTO;
 import com.datorium.Datorium.API.DTOs.User;
 import com.datorium.Datorium.API.Services.UserService;
 import org.springframework.web.bind.annotation.*;
@@ -23,10 +24,12 @@ public class UserController { //This line defines the UserController class, whic
     public int add(@RequestBody User user) { //@RequestBody tells Spring to take the JSON body of the incoming request and convert it into a User object.
         return userService.add(user); //userController is requesting data from userService
     }
-    @GetMapping("/users")
-    public ArrayList<User> users() {
-        return userService.getUsers();
-
+    @GetMapping("/get")
+    public ArrayList<User> get() {
+        return userService.get();
     }
-
+    @PostMapping("/update")
+    public User update(@RequestBody UpdateUserDTO updateUserDTO) {
+        return userService.update(updateUserDTO.userIndex, updateUserDTO.user);
+    }
 }

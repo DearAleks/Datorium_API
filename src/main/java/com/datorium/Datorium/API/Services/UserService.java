@@ -15,8 +15,10 @@ public class UserService {
     public int add(User user) {
         return userRepo.add(user);
     }
-    public ArrayList<User> getUsers() {
-        return userRepo.getUsers();
+    public ArrayList<User> get() {
+        return userRepo.get();
     }
-
+    public User update(int userIndex, User updateUserDTO) {
+        return userRepo.update(userIndex, updateUserDTO);
+    }
 }
