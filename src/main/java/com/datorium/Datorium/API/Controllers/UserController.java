@@ -3,6 +3,7 @@ package com.datorium.Datorium.API.Controllers;
 import com.datorium.Datorium.API.DTOs.UpdateUserDTO;
 import com.datorium.Datorium.API.DTOs.User;
 import com.datorium.Datorium.API.Services.UserService;
+import org.apache.coyote.BadRequestException;
 import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 
@@ -19,8 +20,8 @@ public class UserController { //This line defines the UserController class, whic
         // This means whenever a UserController object is created, it will automatically have a UserService instance to use.
     }
 
-    @PostMapping("/add") // localhost:8800/add -> localhost:8800/user/add
-    public void add(@RequestBody User user) { //@RequestBody tells Spring to take the JSON body of the incoming request and convert it into a User object.
+    @PostMapping("/add")  // localhost:8800/add -> localhost:8800/user/add
+    public void add(@RequestBody User user) throws BadRequestException { //@RequestBody tells Spring to take the JSON body of the incoming request and convert it into a User object.
         userService.add(user); //userController is requesting data from userService
     }
     @GetMapping("/get")

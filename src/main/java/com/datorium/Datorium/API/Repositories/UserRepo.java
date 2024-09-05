@@ -1,3 +1,4 @@
+// this class is responsible for the communication with the database
 package com.datorium.Datorium.API.Repositories;
 
 import com.datorium.Datorium.API.DTOs.User;
@@ -8,9 +9,9 @@ import java.util.ArrayList;
 public class UserRepo {
 
     private ArrayList<User> users = new ArrayList<>(); // Mocked DB
-    private String url = "jdbc:sqlite:my.db";
 
     public void add(User user){
+        String url = "jdbc:sqlite:my.db";
         try (var conn = DriverManager.getConnection(url)) {
             if (conn != null) {
                 var statement = conn.createStatement();
@@ -23,7 +24,23 @@ public class UserRepo {
     }
 
     public ArrayList<User> get() {
-        return users;
+        String url = "jdbc:sqlite:my.db";
+        var resultList = new ArrayList<User>();
+        try (var conn = DriverManager.getConnection(url)) {
+            if (conn != null) {
+                var statement = conn.createStatement();
+                var result = statement.executeQuery("SELECT name FROM people"); //ResultSet data structure
+
+                while (result.next()) { // loop stops when there is no next element
+                    var user = new User();
+                    user.name = result.getString("name");
+                    resultList.add(user);
+                }
+            }
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+        }
+        return resultList;
     }
 
 //    public User get(int id) {
